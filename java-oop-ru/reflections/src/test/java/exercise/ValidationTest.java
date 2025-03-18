@@ -27,6 +27,7 @@ class ValidationTest {
         assertThat(result3).isEqualTo(expected3);
     }
 
+
     // BEGIN
     @Test
     void advancedValidateTest() {
