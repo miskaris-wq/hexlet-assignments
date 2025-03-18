@@ -28,7 +28,8 @@ class ValidationTest {
     }
 
     // BEGIN
-    public static void advancedValidateTest() {
+    @Test
+    void advancedValidateTest() {
         Address address = new Address("USA", "Texas", null, "7", "2");
         Map<String, List<String>> notValidFields = Validator.advancedValidate(address);
         Map<String, List<String>> expected = Map.of("country",List.of("length less than 4"), "street", List.of("can not be null"));

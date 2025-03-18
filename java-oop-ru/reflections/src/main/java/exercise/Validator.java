@@ -49,9 +49,8 @@ public class Validator {
                     Object value = field.get(address);
 
                     if (value == null) {
-
                         list.add("can not be null");
-                        result.put(field.getName(), list);
+
                     }
                 } catch (IllegalAccessException e) {
 
@@ -59,23 +58,24 @@ public class Validator {
                 }
             }
             if(field.isAnnotationPresent(MinLength.class)) {
+
                 try {
-
                     Object value = field.get(address);
-
                     if (value != null) {
-
                         MinLength minLengthAnnotation = field.getAnnotation(MinLength.class);
                         int minLength = minLengthAnnotation.minLength();
                         if (((String) value).length() < minLength) {
                             list.add("length less than " + minLength);
-                            result.put(field.getName(), list);
+
                         }
                     }
                 } catch (IllegalAccessException e) {
 
                     e.printStackTrace();
                 }
+            }
+            if (!list.isEmpty()) {
+                result.put(field.getName(), list);
             }
         }
         return result;
