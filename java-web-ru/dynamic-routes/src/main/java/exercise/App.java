@@ -20,18 +20,17 @@ public final class App {
 
         // BEGIN
         app.get("/companies/{id}", ctx -> {
-            var id = ctx.pathParam("id"); // Получаем ID из параметра пути
-            // Ищем компанию с указанным ID
+            var id = ctx.pathParam("id");
             var company = COMPANIES.stream()
-                    .filter(c -> c.get("id").equals(id)) // Проверяем совпадение ID
-                    .findFirst() // Берем первую подходящую компанию
-                    .orElseThrow(() -> new NotFoundResponse("Company not found")); // Если не найдено - 404
-            ctx.json(company); // Возвращаем найденную компанию в формате JSON
+                    .filter(c -> c.get("id").equals(id))
+                    .findFirst()
+                    .orElseThrow(() -> new NotFoundResponse("Company not found"));
+            ctx.json(company);
         });
         // END
 
         app.get("/companies", ctx -> {
-            ctx.json(COMPANIES); // Возвращаем список всех компаний
+            ctx.json(COMPANIES);
         });
 
         app.get("/", ctx -> {
@@ -39,10 +38,11 @@ public final class App {
         });
 
         return app;
+
     }
 
     public static void main(String[] args) {
         Javalin app = getApp();
-        app.start(7070); // Запускаем сервер на порту 7070
+        app.start(7070);
     }
 }
