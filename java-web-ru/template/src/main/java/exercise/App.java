@@ -16,21 +16,23 @@ public final class App {
     public static Javalin getApp() {
         var app = Javalin.create(config -> {
             config.bundledPlugins.enableDevLogging();
-            config.fileRenderer(new JavalinJte());
+            config.fileRenderer(new JavalinJte()); // Подключаем шаблонизатор JTE
         });
 
+        // Обработчик для списка пользователей
         app.get("/users", ctx -> {
             var header = "Список пользователей";
             var page = new UsersPage(USERS, header);
             ctx.render("users/index.jte", model("page", page));
         });
 
+        // Обработчик для конкретного пользователя
         app.get("/users/{id}", ctx -> {
-            var id = Long.parseLong(ctx.pathParam("id"));
+            var id = Long.parseLong(ctx.pathParam("id")); // Получаем ID из URL
             var user = USERS.stream()
-                    .filter(u -> u.getId() == id)
+                    .filter(u -> u.getId() == id) // Ищем пользователя по ID
                     .findFirst()
-                    .orElseThrow(() -> new NotFoundResponse("User not found"));
+                    .orElseThrow(() -> new NotFoundResponse("User not found")); // 404 если не найден
             var page = new UserPage(user);
             ctx.render("users/show.jte", model("page", page));
         });
@@ -44,6 +46,6 @@ public final class App {
 
     public static void main(String[] args) {
         Javalin app = getApp();
-        app.start(7070);
+        app.start(7070); // Запускаем приложение на порту 7070
     }
 }

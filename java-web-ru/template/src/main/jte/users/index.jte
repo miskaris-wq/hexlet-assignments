@@ -1,21 +1,47 @@
-@import org.example.hexlet.dto.users.UsersPage
+@import exercise.dto.users.UsersPage
 @param UsersPage page
 
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Хекслет</title>
+        <title>Пользователи</title>
+        <!-- Подключаем Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <h1>${page.getHeader()}</h1>
-        @if(page.getUsers().isEmpty())
-            <p>Пока не добавлено ни одного пользователя</p>
-        @else
-            @for(var user : page.getUsers())
-               <div>
-                   <h2><a href="/users/${user.getId()}">${user.getFirsName()}${user.getLastName()}</a></h2>
-                   <p>${user.getEmail()}</p>
-               </div>
-            @endfor
-        @endif
+        <div class="container mt-5">
+            <h1>${page.getHeader()}</h1>
+
+            @if(page.getUsers().isEmpty())
+                <div class="alert alert-info">Нет пользователей для отображения</div>
+            @else
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Имя</th>
+                            <th>Фамилия</th>
+                            <th>Email</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(var user : page.getUsers())
+                            <tr>
+                                <td>${user.getId()}</td>
+                                <td>${user.getFirstName()}</td>
+                                <td>${user.getLastName()}</td>
+                                <td>${user.getEmail()}</td>
+                                <td>
+                                    <a href="/users/${user.getId()}" class="btn btn-sm btn-primary">
+                                        Просмотр
+                                    </a>
+                                </td>
+                            </tr>
+                        @endfor
+                    </tbody>
+                </table>
+            @endif
+        </div>
     </body>
 </html>
