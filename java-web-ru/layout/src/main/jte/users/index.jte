@@ -1,12 +1,12 @@
-@import org.example.hexlet.dto.User
-@param User user
+@import exercise.dto.UsersPage
+@param UsersPage page
 
 @template.layout.page(
-    title = "Профиль пользователя",
+    title = "Список пользователей",
     content = @`
-        <h1>${user.getName()}</h1>
-        <div>ID: ${user.getId()}</div>
-        <div>Email: ${user.getEmail()}</div>
-        <a href="/users">Назад к списку</a>
+        <a href="/users/build">Новый пользователь</a>
+        @for(var user : page.getUsers())
+            <div>${user.getName()}</div>
+        @endfor
     `
 )
