@@ -1,3 +1,7 @@
+@import gg.jte.Content
+@param Content content
+@param String title
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +14,7 @@
     </header>
 
     <main>
-        @template.content()
+        ${content}
     </main>
 
     <footer>
