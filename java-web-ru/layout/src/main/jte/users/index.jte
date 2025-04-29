@@ -7,7 +7,7 @@
         <h1>Пользователи</h1>
         <a href="/users/build">Новый пользователь</a>
         <ul>
-            @for(user in page.getUsers())
+            @for(var user : page.getUsers())
                 <li>
                     <a href="/users/${user.getId()}">
                         ${user.getFirstName()} ${user.getLastName()}
