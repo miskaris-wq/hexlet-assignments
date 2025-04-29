@@ -1,16 +1,20 @@
 @import gg.jte.Content
 @param Content content
-@param String title
+@param String title = "My App"
 
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
 </head>
 <body>
     <header>
-        <a href="/">Главная</a>
-        <a href="/users">Пользователи</a>
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/users">Пользователи</a>
+        </nav>
     </header>
 
     <main>
@@ -18,7 +22,9 @@
     </main>
 
     <footer>
-        <p>© 2025 My App. <a href="https://github.com/miskaris-wq" target="_blank">My GitHub</a></p>
+        <p>© 2025 My App |
+           <a href="https://github.com/yourusername" target="_blank">My GitHub</a>
+        </p>
     </footer>
 </body>
 </html>

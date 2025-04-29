@@ -5,8 +5,10 @@
     title = "Профиль пользователя",
     content = @`
         <h1>${user.getName()}</h1>
-        <div>ID: ${user.getId()}</div>
-        <div>Email: ${user.getEmail()}</div>
+        <div>
+            <p>ID: ${user.getId()}</p>
+            <p>Email: ${user.getEmail()}</p>
+        </div>
         <a href="/users">Назад к списку</a>
     `
 )
