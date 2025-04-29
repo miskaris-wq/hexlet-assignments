@@ -1,15 +1,17 @@
-@import exercise.dto.UsersPage
+@import exercise.dto.users.UsersPage
 @param UsersPage page
 
 @template.layout.page(
     title = "Список пользователей",
     content = @`
         <h1>Пользователи</h1>
-        <a href="/users/build">Создать нового</a>
+        <a href="/users/build">Новый пользователь</a>
         <ul>
-            @for(var user : page.getUsers())
+            @for(user in page.getUsers())
                 <li>
-                    <a href="/users/${user.getId()}">${user.getName()}</a>
+                    <a href="/users/${user.getId()}">
+                        ${user.getFirstName()} ${user.getLastName()}
+                    </a>
                 </li>
             @endfor
         </ul>
