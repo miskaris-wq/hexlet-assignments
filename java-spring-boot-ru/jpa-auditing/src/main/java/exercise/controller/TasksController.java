@@ -42,16 +42,16 @@ public class TasksController {
     // BEGIN
     @PostMapping(path = "")
     @ResponseStatus(HttpStatus.CREATED)
-    public Task create(Task task) {
+    public Task create(@RequestBody Task task) {
         return taskRepository.save(task);
     }
 
     @PutMapping(path = "/{id}")
-    public void update(@RequestBody Task product, @PathVariable long id) {
+    public void update(@RequestBody Task task, @PathVariable long id) {
         var oldProduct = taskRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
-        oldProduct.setTitle(product.getTitle());
-        oldProduct.setDescription(product.getDescription());
+                orElseThrow(() -> new ResourceNotFoundException("Task with id " + id + " not found"));
+        oldProduct.setTitle(task.getTitle());
+        oldProduct.setDescription(task.getDescription());
         taskRepository.save(oldProduct);
     }
     // END
