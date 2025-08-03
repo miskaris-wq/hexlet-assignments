@@ -43,7 +43,7 @@ public class TasksController {
     @PostMapping(path = "")
     @ResponseStatus(HttpStatus.CREATED)
     public Task create(Task task) {
-       return taskRepository.save(task);
+        return taskRepository.save(task);
     }
 
     @PutMapping(path = "/{id}")
